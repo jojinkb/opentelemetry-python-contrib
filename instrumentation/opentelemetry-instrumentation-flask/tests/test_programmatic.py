@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 # pylint: disable=too-many-lines
-import json
 from timeit import default_timer
 from unittest.mock import Mock, patch
 
@@ -291,7 +290,7 @@ class TestProgrammatic(InstrumentationTest, WsgiTestBase):
         )
         self.assertEqual(200, resp.status_code)
         self.assertEqual(
-            json.loads(resp.data),
+            resp.get_json(),
             {"key1": "value1", "key2": "value2", "key3": "1/3"},
         )
         # the baggage context is detached once the request has ended
